@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHappiness: 100
   maxHealth: 100
-  lifespan: 89
+  lifespan: 94
   maxEnergy: 100
   maxStrength: 100
   maxAgility: 100
@@ -23,12 +23,12 @@ MonoBehaviour:
   green: 0.18
   blue: 0.66
   owner: DangerDano
-  nickname: Merlin
-  age: 0
+  nickname: Drago
+  age: 27.34328
   size: 10
-  happiness: 100
-  newMode: 5
+  happiness: 58.74405
+  newMode: 1
   health: 100
-  energy: 100
+  energy: 72.66019
   strength: 8.255772
   agility: 17.017157

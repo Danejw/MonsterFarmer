@@ -2870,7 +2870,6 @@ MonoBehaviour:
     PresetName: 
   TargetLabel: 2
   TextLabel: {fileID: 0}
-  TextMeshProLabel: {fileID: 317428816}
 --- !u!114 &397884087
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5294,7 +5293,6 @@ MonoBehaviour:
     PresetName: 
   TargetLabel: 2
   TextLabel: {fileID: 0}
-  TextMeshProLabel: {fileID: 550726851}
 --- !u!114 &465394102
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5351,7 +5349,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.4245283, g: 0.69068414, b: 1, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -7984,7 +7982,6 @@ MonoBehaviour:
     PresetName: 
   TargetLabel: 2
   TextLabel: {fileID: 0}
-  TextMeshProLabel: {fileID: 538881853}
 --- !u!114 &595371824
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10668,7 +10665,6 @@ MonoBehaviour:
     PresetName: 
   TargetLabel: 2
   TextLabel: {fileID: 0}
-  TextMeshProLabel: {fileID: 901854281}
 --- !u!114 &1180000375
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13530,7 +13526,6 @@ MonoBehaviour:
     PresetName: 
   TargetLabel: 2
   TextLabel: {fileID: 0}
-  TextMeshProLabel: {fileID: 1247809742}
 --- !u!114 &1351062310
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16045,7 +16040,6 @@ MonoBehaviour:
     PresetName: 
   TargetLabel: 2
   TextLabel: {fileID: 0}
-  TextMeshProLabel: {fileID: 1291218419}
 --- !u!114 &1601402065
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18535,7 +18529,6 @@ MonoBehaviour:
     PresetName: 
   TargetLabel: 2
   TextLabel: {fileID: 0}
-  TextMeshProLabel: {fileID: 126318498}
 --- !u!114 &1622800955
 MonoBehaviour:
   m_ObjectHideFlags: 0

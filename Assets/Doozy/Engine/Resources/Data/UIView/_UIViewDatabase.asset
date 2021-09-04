@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 889794c411054f7ca8e6fbdc6728c846, type: 3}
+  m_Name: _UIViewDatabase
+  m_EditorClassIdentifier: 
+  DatabaseType: 2
+  CategoryNames:
+  - Custom
+  - Example
+  - General
+  - UI
+  - Wallet
+  - Menu
+  Categories:
+  - {fileID: 11400000, guid: b01e98f4801f7124ba39e1dac4debf90, type: 2}
+  - {fileID: 11400000, guid: 285d092eb0551d249a75f2fd6da4722c, type: 2}
+  - {fileID: 11400000, guid: 72f545353b950164b80d8bc8a4d356e4, type: 2}
+  - {fileID: 11400000, guid: b3c37d321cf1cb347a315f5dcb18d7ff, type: 2}
+  - {fileID: 11400000, guid: e5b775efa2b476d44b95d25913caa4c2, type: 2}

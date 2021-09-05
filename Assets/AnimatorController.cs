@@ -5,26 +5,71 @@ using UnityEngine;
 namespace Monster
 {
     [RequireComponent(typeof(Animator))]
+    [RequireComponent(typeof(KeyboardControllerInput))]
+
     public class AnimatorController : MonoBehaviour
     {
-        Animator anim;
+        private Animator anim;
+        private KeyboardControllerInput controller;
+
         void Start()
         {
             anim = GetComponent<Animator>();
+            controller = GetComponent<KeyboardControllerInput>();
         }
 
         void Update()
         {
-            if (GetComponent<Monster>().stats.newMode == MonsterStats.mode.active)
+            if (controller.isMovingForward)
             {
-                anim.SetBool("Active", true);
-                anim.SetBool("Idle", false);
+                anim.SetBool("IsMovingForward", true);
+
+                // match animation speed with velocity
+                anim.SetFloat("AnimationSpeed", Mathf.Abs(controller.velocity));
             }
-            else if (GetComponent<Monster>().stats.newMode == MonsterStats.mode.idle)
+            else
+                anim.SetBool("IsMovingForward", false);
+
+
+            if (controller.isMovingBackward)
             {
-                anim.SetBool("Idle", true);
-                anim.SetBool("Active", false);
+                anim.SetBool("IsMovingBackward", true);
+
+                anim.SetFloat("AnimationSpeed", Mathf.Abs(controller.velocity));
             }
+            else
+                anim.SetBool("IsMovingBackward", false);
+
+
+            if (controller.isTurningLeft)
+            {
+                anim.SetBool("IsTurningLeft", true);
+
+                anim.SetFloat("AnimationSpeed", Mathf.Abs(controller.angularVelocity));
+            }
+            else
+                anim.SetBool("IsTurningLeft", false);
+
+
+            if (controller.isTurningRight)
+            {
+                anim.SetBool("IsTurningRight", true);
+
+                anim.SetFloat("AnimationSpeed", Mathf.Abs(controller.angularVelocity));
+            }
+            else
+                anim.SetBool("IsTurningRight", false);
+
+
+            if (controller.isNotMoving)
+            {
+                anim.SetBool("IsNotMoving", true);
+
+                anim.SetFloat("AnimationSpeed", 1);
+            }
+            else
+                anim.SetBool("IsNotMoving", false);
+
         }
     }
 }

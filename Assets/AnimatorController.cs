@@ -5,17 +5,17 @@ using UnityEngine;
 namespace Monster
 {
     [RequireComponent(typeof(Animator))]
-    [RequireComponent(typeof(KeyboardControllerInput))]
+    [RequireComponent(typeof(DriveController))]
 
     public class AnimatorController : MonoBehaviour
     {
         private Animator anim;
-        private KeyboardControllerInput controller;
+        private DriveController controller;
 
         void Start()
         {
             anim = GetComponent<Animator>();
-            controller = GetComponent<KeyboardControllerInput>();
+            controller = GetComponent<DriveController>();
         }
 
         void Update()

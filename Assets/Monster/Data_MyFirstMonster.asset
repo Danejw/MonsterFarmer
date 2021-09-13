@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHappiness: 100
   maxHealth: 100
-  lifespan: 86
+  lifespan: 85
   maxEnergy: 100
   maxStrength: 100
   maxAgility: 100
@@ -24,11 +24,11 @@ MonoBehaviour:
   blue: 0.66
   owner: DangerDano
   nickname: Drago
-  age: 4.4541707
-  size: 1.0616173
-  happiness: 41.475784
+  age: 8.365061
+  size: 1.4585935
+  happiness: 62.225952
   newMode: 0
-  health: 18.727163
-  energy: 61.724476
+  health: 21.419329
+  energy: 99.99837
   strength: 8.255772
   agility: 17.017157

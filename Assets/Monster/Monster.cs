@@ -42,7 +42,7 @@ namespace Monster
             prevAge = Mathf.RoundToInt(stats.age);
 
             color = new Color(stats.red, stats.green, stats.blue);
-            size = new Vector3( stats.size, stats.size, stats.size);
+            size = new Vector3(stats.size, stats.size, stats.size);
         }
 
         protected virtual void Update()
@@ -70,14 +70,17 @@ namespace Monster
                     break;
 
                 case MonsterStats.mode.active:
-                    Age();
+                    if (stats.newMode != MonsterStats.mode.sleep && stats.newMode != MonsterStats.mode.freeze)
+                    {
+                        Age();
+                        LivingCosts();
+                        Grow();
+                        DecreaseHappiness();
+                    }
+
                     if (stats.health == 0) stats.newMode = MonsterStats.mode.freeze; // no health
                     if (stats.age == stats.lifespan) stats.newMode = MonsterStats.mode.deepFreeze; // no lifespan left
                     if (stats.energy == 0) stats.newMode = MonsterStats.mode.sleep; // no energy;
-
-                    Grow();
-
-                    DecreaseHappiness();
                     if (stats.happiness == 0) stats.newMode = MonsterStats.mode.idle;
 
                     break;
@@ -163,19 +166,25 @@ namespace Monster
             if (stats.age == stats.lifespan) return;
 
             // Age increases lifespan incrementally until lifespan is reached
-            if (stats.age < stats.lifespan && stats.newMode != MonsterStats.mode.sleep && stats.newMode != MonsterStats.mode.freeze)
-            {
+            if (stats.age < stats.lifespan)
                 stats.age += ageSpeed * Time.deltaTime;
-            }
             else if (stats.age >= stats.lifespan)
             {
                 stats.age = stats.lifespan;
 
                 if (debug) Debug.Log("Dead!");
             }
+        }
 
+        private void LivingCosts()
+        {
             // Energy decreasing overtime (living costs)
-            if (stats.energy > 0 && stats.energy <= stats.maxEnergy && stats.newMode != MonsterStats.mode.sleep && stats.newMode != MonsterStats.mode.freeze) stats.energy -= ageSpeed * Time.deltaTime;
+            if (stats.energy > 0 && stats.energy <= stats.maxEnergy)
+            {
+                stats.energy -= ageSpeed * Time.deltaTime;
+
+                if (debug) Debug.Log("Applying Living Costs");
+            }
             else if (stats.energy <= 0)
             {
                 stats.energy = 0;
@@ -189,7 +198,8 @@ namespace Monster
             if (stats.size == stats.maxSize) return;
 
             // Increases the size of the monster as it ages at runtime
-            if (stats.size >= 0 && stats.size < 10 && stats.newMode != MonsterStats.mode.sleep && stats.newMode != MonsterStats.mode.freeze) stats.size += ageSpeed * Time.deltaTime;
+            if (stats.size >= 0 && stats.size < 10) 
+                stats.size += ageSpeed * Time.deltaTime;
             else
             {
                 stats.size = stats.maxSize;
@@ -255,7 +265,7 @@ namespace Monster
         #endregion
 
         #region Public Methods
-        private void addEnergy(float amt)
+        public void addEnergy(float amt)
         {
             if (stats.energy < stats.maxEnergy) stats.energy += amt;
             if (stats.energy > stats.maxEnergy) stats.energy = stats.maxEnergy;

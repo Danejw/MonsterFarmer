@@ -1,17 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 using Monster;
 
-[RequireComponent(typeof(CharacterController))]
+
+[RequireComponent(typeof(NavMeshAgent))]
 
 public class DriveController : MonoBehaviour
 {
     public bool debug;
 
-    CharacterController controller;
-    public float speed = 2;
-    public float rotationalSpeed = 1;
+    NavMeshAgent navAgent;
 
     // States
     public bool isNotMoving;
@@ -24,8 +24,8 @@ public class DriveController : MonoBehaviour
 
 
     private void Start()
-    {
-        controller = GetComponent<CharacterController>();
+    {        
+        navAgent = GetComponent<NavMeshAgent>();
 
         // default start state
         isNotMoving = true;
@@ -33,10 +33,32 @@ public class DriveController : MonoBehaviour
     private void Update()
     {
         Rotate();
-        Move();
+        NavMeshMovement();
+        // Move();
     }
 
-    private void Move()
+
+    private void Rotate()
+    {
+        float horizontalRotation = Input.GetAxis("Horizontal");
+
+        transform.localEulerAngles += new Vector3(0, horizontalRotation * navAgent.angularSpeed, 0);
+
+        // Update turning left and turning right state variables 
+        if (horizontalRotation > 0)
+            isTurningRight = true;
+        else if (horizontalRotation < 0)
+            isTurningLeft = true;
+        else
+        {
+            isTurningLeft = false;
+            isTurningRight = false;
+        }
+
+        angularVelocity = horizontalRotation;
+    }
+
+    private void NavMeshMovement()
     {
         float verticalMove = Input.GetAxis("Vertical");
 
@@ -51,7 +73,7 @@ public class DriveController : MonoBehaviour
         if (forwardAmount > 0)
         {
             // Move forwards
-            controller.Move(speed * Time.deltaTime * move);
+            navAgent.Move(navAgent.speed * Time.deltaTime * move);
             // Sets mode to active if moving forward
             GetComponent<Monster.Monster>().stats.newMode = MonsterStats.mode.active;
 
@@ -62,10 +84,10 @@ public class DriveController : MonoBehaviour
         else if (forwardAmount < 0)
         {
             // Move slower if moving backwards
-            controller.Move((speed / 4) * Time.deltaTime * move);
+            navAgent.Move((navAgent.speed / 4) * Time.deltaTime * move);
             // set mode to active if moving backwards
             GetComponent<Monster.Monster>().stats.newMode = MonsterStats.mode.active;
-            
+
             // update state variables
             isMovingBackward = true;
             isNotMoving = false;
@@ -89,25 +111,5 @@ public class DriveController : MonoBehaviour
         if (debug) Debug.Log(forwardAmount);
 
         velocity = verticalMove;
-    }
-
-    private void Rotate()
-    {
-        float horizontalRotation = Input.GetAxis("Horizontal");
-
-        transform.localEulerAngles += new Vector3(0, horizontalRotation * rotationalSpeed, 0);
-
-        // Update turning left and turning right state variables 
-        if (horizontalRotation > 0)
-            isTurningRight = true;
-        else if (horizontalRotation < 0)
-            isTurningLeft = true;
-        else
-        {
-            isTurningLeft = false;
-            isTurningRight = false;
-        }
-
-        angularVelocity = horizontalRotation;
     }
 }
